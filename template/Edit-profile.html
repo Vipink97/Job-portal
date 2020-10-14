@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block style %}
+<style>
+.check{
+    color: blue;
+    background-color:blue;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="width: 50%; margin: 5em auto;">
+    <div class="container card bg-light">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Personal Information</legend>    
+            </div>
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <label class="pr-1" style="font-weight:500;">Profile Image :</label>{{form.profilepic}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{form.fullname}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{form.email}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{form.phone}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{form.address}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{form.educationlevel}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{form.designation}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-3 pr-0">
+                        {{form.age}}
+                    </div>
+                    <div class="col-md-3 pr-1">
+                        {{form.experience}}
+                    </div>
+                    <div class="col-md-3 pl-1">
+                        {{form.currentsalary}}
+                    </div>
+                    <div class="col-md-3 pl-0">
+                        {{form.demandsalary}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        {{form.aboutme}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Skills</legend>    
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    {{ skillform.management_form }}
+                    <div id="form_skill" class="row mb-2">
+                        {% for form in skillform.forms %}
+                            {{form.non_field_errors}}
+                            {{form.errors}}
+                            <table class='no_error'>
+                                <div class="col-md-8 mb-2">
+                                    {{ form.skillname }}
+                                </div>    
+                                <div class="col-md-4 mb-2">
+                                    {{ form.skillLevel }}
+                                </div>    
+                                <div class="hidden">
+                                    {{ form.id}}
+                                </div> 
+                            </table>
+                        {% endfor %}
+                    </div>
+                    <input type="button" value="Add another" id="add_more" class="btn btn-outline-success">
+                    <input type="button" value="Remove" id="remove" class="btn btn-outline-danger" style="float: right;">
+                    <div id="empty_form" style="display:none">
+                        <table class='no_error'>
+                            <div class="col-md-8 mb-2">
+                                {{ skillform.empty_form.skillname }}
+                            </div>    
+                            <div class="col-md-4 mb-2">
+                                {{ skillform.empty_form.skillLevel }}
+                            </div>   
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Education</legend>    
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    {{ educationform.management_form }}
+                    <div id="form_education" class="row mb-2">
+                        {% for form in educationform.forms %}
+                            {{form.non_field_errors}}
+                            {{form.errors}}
+                            <table class='no_error'>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.Coursename }}
+                                </div>    
+                                <div class="col-md-6 mb-3">
+                                    <label>Complete Date:</label>
+                                    {{ form.completedate }}
+                                </div>   
+                                <div class="col-md-2 mb-3 mt-1 ml-2">
+                                    <label>Percentage:</label>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.percentage }}
+                                </div>   
+                                <div class="col-md-12 mb-4">
+                                    {{ form.AboutCourse }}
+                                </div>    
+                                <div class="hidden">
+                                    {{ form.id}}
+                                </div> 
+                            </table>
+                        {% endfor %}
+                    </div>
+                    <input type="button" value="Add another" id="add_education" class="btn btn-outline-success">
+                    <input type="button" value="Remove" id="remove" class="btn btn-outline-danger" style="float: right;">
+                    <div id="empty_education_form" style="display:none">
+                        <table class='no_error'>
+                            <div class="col-md-6 mb-3">
+                                {{ educationform.empty_form.Coursename }}
+                            </div>    
+                            <div class="col-md-6 mb-3">
+                                <label>Complete Date:</label>
+                                {{ educationform.empty_form.completedate }}
+                            </div>   
+                            <div class="col-md-2 mb-3 mt-1 ml-2">
+                                <label>Percentage:</label>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ educationform.empty_form.percentage }}
+                            </div>   
+                            <div class="col-md-12 mb-4">
+                                {{ educationform.empty_form.AboutCourse }}
+                            </div>    
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Experience</legend>    
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    {{ experienceform.management_form }}
+                    <div id="form_experience" class="row mb-2">
+                        {% for form in experienceform.forms %}
+                            {{form.non_field_errors}}
+                            {{form.errors}}
+                            <table class='no_error'>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.CompanyName }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{form.JoinDate}}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.EndDate }}
+                                </div>    
+                                <div class="col-md-12 mb-3">
+                                    {{ form.CmpAddress }}
+                                </div>   
+                                <div class="col-md-12 mb-4">
+                                    {{ form.AboutCmpExp }}
+                                </div>    
+                                <div class="hidden">
+                                    {{ form.id}}
+                                </div> 
+                            </table>
+                        {% endfor %}
+                    </div>
+                    <input type="button" value="Add another" id="add_experience" class="btn btn-outline-success">
+                    <input type="button" value="Remove" id="remove" class="btn btn-outline-danger" style="float: right;">
+                    <div id="empty_experience_form" style="display:none">
+                        <table class='no_error'>
+                            <div class="col-md-6 mb-3">
+                                {{ experienceform.empty_form.CompanyName }}
+                            </div> 
+                            <div class="col-md-3 mb-3">
+                                {{experienceform.empty_form.JoinDate}}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                {{ experienceform.empty_form.EndDate }}
+                            </div>   
+                            <div class="col-md-12 mb-3">
+                                {{ experienceform.empty_form.CmpAddress }}
+                            </div>   
+                            <div class="col-md-12 mb-4">
+                                {{ experienceform.empty_form.AboutCmpExp }}
+                            </div>    
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Projects</legend>    
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    {{ projectform.management_form }}
+                    <div id="form_project" class="row mb-2">
+                        {% for form in projectform.forms %}
+                            {{form.non_field_errors}}
+                            {{form.errors}}
+                            <table class='no_error'>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.ProjectName }}
+                                </div>    
+                                <div class="col-md-12 mb-3">
+                                    {{ form.ProjectDescription }}
+                                </div>    
+                                <div class="hidden">
+                                    {{ form.id}}
+                                </div> 
+                            </table>
+                        {% endfor %}
+                    </div>
+                    <input type="button" value="Add another" id="add_project" class="btn btn-outline-success">
+                    <input type="button" value="Remove" id="remove" class="btn btn-outline-danger" style="float: right;">
+                    <div id="empty_project_form" style="display:none">
+                        <table class='no_error'>
+                            <div class="col-md-6 mb-3">
+                                {{ projectform.empty_form.ProjectName }}
+                            </div>    
+                            <div class="col-md-12 mb-3">
+                                {{ projectform.empty_form.ProjectDescription }}
+                            </div>    
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+                <button class="btn bg-success" style="color: white; word-spacing: 1.5em; letter-spacing: 0.3em;" type="submit">Update And Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('#add_more').click(function(){
+        var form_idx = $('#id_skills_set-TOTAL_FORMS').val();
+        $('#form_skill').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_skills_set-TOTAL_FORMS').val(parseInt(form_idx)+1);
+    });
+</script>
+<script>
+    $('#add_education').click(function(){
+        var form_idx = $('#id_education_set-TOTAL_FORMS').val();
+        $('#form_education').append($('#empty_education_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_education_set-TOTAL_FORMS').val(parseInt(form_idx)+1);
+    });
+</script>
+<script>
+    $('#add_experience').click(function(){
+        var form_idx = $('#id_experience_set-TOTAL_FORMS').val();
+        $('#form_experience').append($('#empty_experience_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_experience_set-TOTAL_FORMS').val(parseInt(form_idx)+1);
+    });
+</script>
+<script>
+    $('#add_project').click(function(){
+        var form_idx = $('#id_project_set-TOTAL_FORMS').val();
+        $('#form_project').append($('#empty_project_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_project_set-TOTAL_FORMS').val(parseInt(form_idx)+1);
+    });
+</script>
+{% endblock %}

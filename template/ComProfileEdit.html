@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}
+Edit Company Profile
+{% endblock %}
+
+{% block style %}
+<style>
+.check{
+    color: blue;
+    background-color:blue;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="width: 50%; margin: 5em auto;">
+    <div class="container card bg-light">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Company Information</legend>    
+            </div>
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <label class="pr-1" style="font-weight:500;">Company Logo :</label>{{ComProfileform.CompanyLogo}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{ComProfileform.CompanyName}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{ComProfileform.Email}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{ComProfileform.Contact}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{ComProfileform.Address}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 pr-1">
+                        {{ComProfileform.CompanyType}}
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        {{ComProfileform.Website}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-3 pr-0">
+                        {{ComProfileform.TotalEmployees}}
+                    </div>
+                    <div class="col-md-3 pr-1">
+                        {{ComProfileform.EstablishedIn}}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        {{ComProfileform.AboutCompany}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+                <button class="btn bg-success" style="color: white; word-spacing: 1.5em; letter-spacing: 0.3em;" type="submit">Update And Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

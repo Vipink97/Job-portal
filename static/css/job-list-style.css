@@ -1,0 +1,33 @@
+.job_list{
+    margin-top: 7em;
+    margin-left: 28%;
+}
+
+.card{
+    margin-top: 1em;
+}
+
+.card-body{
+    padding: 0;
+    margin: 0;
+}
+
+.card-img-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img{
+    width:10em;
+    padding: 0em;
+    margin: 0em;
+}
+/* 
+.more-details{
+    visibility: collapse;
+} */
+
+.more_details{
+    visibility: hidden;
+}

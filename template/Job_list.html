@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/job-list-style.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="job_list">
+
+{% for job in joblist %}
+<div class="card" style="width: 35rem;">
+  <div class="card-body row">
+    <div class="col-md-3 card-img-div">
+     <img class="card-img" src="/static/images/Company img.jpg" alt="Card image cap"> 
+    </div>
+    <div class="col-md-6">
+      <h5 class="card-title">{{ job.JobTitle }}</h5>
+      <h6 class="card-subtitle mb-2 ">{{job.CompanyName }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{ job.EmploymentType }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Location - {{ job.Location }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Salary - {{job.MonthlySalary }}/Month</h6>
+      <h6><button class='more'>More Details >></button></h6>
+      <div class='more-details'>
+        <h6 class="card-subtitle mb-2 text-muted">Industry Area -  {{ job.IndustryArea }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Employment Type - {{ job.EmploymentType }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Designation - {{ job.Designation }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Positions - {{ job.Positions}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Experience - {{ job.Experience }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Gender - {{ job.Gender}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Nationality - {{ job.Nationality }}</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <a href="#" class="btn btn-primary"> Apply Now</a>
+    </div>
+    <div class="col-md-12">
+      <p class="card-text">{{ job.JobDetail }}</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<script>
+    $(document).ready(function () {
+      $('.more-details').css('display','none');  
+      $(".more").click(function () {
+        
+        {% comment %} $(".more-details").toggle(); {% endcomment %}
+        if ( $('.more-details').css('display') == 'none' )
+           $('.more-details').css('display','block');
+        else
+           $('.more-details').css('display','none');  
+        console.log("okkk");   
+      });
+    });
+</script>
+
+{% endblock %}

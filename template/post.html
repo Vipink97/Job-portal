@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %} Post Job {% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/Index-style.css">
+<link rel="stylesheet" href="/static/css/Post-style.css">
+{% endblock %}
+
+{% block content %}
+<div class="post">
+  <div class="container">
+    <div class="formpanel">
+      <!-- Job Information -->
+      <h5>Job Information</h5>
+      <form method='POST'>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="formrow">
+            {{form.JobTitle}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.IndustryArea}}
+            <datalist id="area">
+              <option value="IT"></option>
+              <option value="Accounts"></option>
+              <option value="Marketing"></option>
+              <option value="Manager"></option>
+              <option value="Banking"></option>
+            </datalist>
+            </input>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.MonthlySalary}}
+            <datalist id="salary">
+              <option>$500 - $999</option>
+              <option>$999 - $1499</option>
+              <option>$1500 - $1999</option>
+              <option>$2000 - $3000</option>
+              <option>$3000+</option>
+            </datalist>
+            </input>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.Location}}
+            <datalist id="location">
+              <option>New York</option>
+              <option>Atlanta</option>
+              <option>California</option>
+              <option>Verginia</option>
+              <option>San Joes</option>
+            </datalist>
+            </input>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.EmploymentType}}
+            <datalist id="employment-type">
+              <option>Permanent</option>
+              <option>Contract</option>
+              <option>Freelance</option>
+            </datalist>
+            </input>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.Designation}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.Positions}}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="formrow">
+            {{form.Experience}}
+            <datalist id="experience">
+              <option>Fresh</option>
+              <option>1 Year</option>
+              <option>2 Years</option>
+              <option>3 Years</option>
+              <option>4 Years</option>
+              <option>5 Years</option>
+              <option>6 Years</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="formrow">
+            {{form.Gender}}
+            <datalist id="gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Any</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="formrow">
+            {{form.Nationality}}
+            <datalist id="nation">
+              <option>India</option>
+              <option>United States</option>
+              <option>Australia</option>
+              <option>United Kingdom</option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="formrow">
+            {{form.JobDetail}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <button class="btn" type='submit'>Post Job</button>
+    </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

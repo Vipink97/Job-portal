@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block style%}
+<link rel="stylesheet" href="/static/css/profile-style.css">
+{% endblock %}
+
+{% block content %}
+<div class="profile-body container">
+    <div class="row">
+        <div class="card bg-light col-md-12">
+            <div class="row card-body">
+                <div class="col-md-2">
+                    <div class="userPic"><img src="{{ user.profile.profilepic.url }}" alt="Profile Pic"></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="title"><h5>{{ user.profile.fullname}}</h5></div>
+                    <div class="desi"><h6>{{ user.profile.designation }}</h6></div>
+                    <div class="loctext"><i class="fa fa-history" aria-hidden="true"></i> Member Since, {{ month_joined }} {{ user.date_joined.day }}, {{ user.date_joined.year}}</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="loctext"><i class="fa fa-phone mr-1" aria-hidden="true"></i> {{ user.profile.phone }}</div>
+                    <div class="loctext"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> {{ user.profile.email}}</div>
+                    <div class="loctext"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> {{ user.profile.address }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-left: 0; padding-right: 0;">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h3 class="card-title border-bottom">About me</h3>
+                    <p>{{ user.profile.aboutme }}</p>
+                    <ul>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h3 class="card-title border-bottom">Education</h3>
+                    <ul class="pl-0 mb-0 mt-4">
+                    {% for education in educations %}
+                        <li class="border-bottom pb-2 mt-2" style="list-style: none;">
+                        <div class='row'>
+                        <div class='col-md-3'>
+                            <div class="date"><div class="date-circle">{{education.completedate.day}}<br>{{education.completedate.month}}<br>{{education.completedate.year}}</div></div>
+                        </div>
+                        <div class='col-md-9'>    
+                            <h4>{{ education.Coursename }}</h4>
+                            <h6>Percentage : <small>{{ education.percentage }}%</small></h6>
+                            <p>{{ education.AboutCourse }}</p>
+                        </div>
+                        </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h3 class="card-title border-bottom">Experience</h3>
+                    <ul class="ml-3 pl-0 mt-3">
+                        {% for experience in experiences %}
+                        <li class="border-bottom mt-3 pb-2" style="list-style: none;">
+                            <div class="row">
+                            <div class="col-md-2 pl-0 pr-0"><img src="/static/images/Company img.jpg" alt="Company Logo" style="width: 100%; padding-top:0.5em; max-width:8em;"></div>
+                            <div class="col-md-10">
+                                <h4>{{ experience.CompanyName }}</h4>
+                                <div class="row">
+                                <div class="col-md-8"><h6>{{ experience.CmpAddress }}</h6></div>
+                                <div class="col-md-4"><h6>From {{ experience.JoinDate }} - {{ experience.EndDate}}</h6></div>
+                            </div>
+                            <p>{{ experience.AboutCmpExp }}</p>
+                        </div>
+                        </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h3 class="card-title border-bottom">Projects</h3>
+                    <ul class="ml-3 pl-0 mt-3">
+                        {% for project in projects %}
+                        <li class="border-bottom mt-3 pb-2" style="list-style: none;">
+                            <div class="row">
+                                <div class="col-md-2 pl-0 pr-0">
+                                <img src="/static/images/project.png" alt="Project Logo" style="width: 100%; padding-top:0.5em; max-width:5em;">
+                                </div>
+                                <div class="col-md-10 pl-0">
+                                    <h4>{{ project.ProjectName }}</h4>
+                                    <p>{{ project.ProjectDescription }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-body user-detail">
+                    <h3 class="card-title border-bottom">Candidate Detail</h3>
+                    <ul class="pl-1">
+                        <li class="row">
+                        <div class="col-md-8 ul font-weight-bold">Experience</div>
+                        <div class="col-md-4">{{ user.profile.experience }}</div>
+                        </li>
+                        <li class="row">
+                        <div class="col-md-8 font-weight-bold">Age</div>
+                        <div class="col-md-4">{{ user.profile.age }}</div>
+                        </li>
+                        <li class="row">
+                        <div class="col-md-8 font-weight-bold">Current Salary($)</div>
+                        <div class="col-md-4">{{ user.profile.currentsalary }}</div>
+                        </li>
+                        <li class="row">
+                        <div class="col-md-8 font-weight-bold">Expected Salary($)</div>
+                        <div class="col-md-4">{{ user.profile.demandsalary }}</div>
+                        </li>
+                        <li class="row">
+                        <div class="col-md-8 font-weight-bold">Education Level</div>
+                        <div class="col-md-4">{{ user.profile.educationlevel }}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h3 class="card-title border-bottom">Skills</h3>
+                    <div class="skillswrap"> 
+                    {% for skill in skills %}
+                    <h6>{{ skill.skillname }}</h6>
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.skillLevel }}%"> <span>{{ skill.skillLevel }}%</span> </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+
+<div class="container mb-5 pl-0">
+    <a class="btn btn-outline-primary" href="{% url 'editprofile' %}">Edit Profile</a>
+</div>
+
+{% endblock %}

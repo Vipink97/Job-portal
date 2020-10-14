@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/sign-up-style.css">
+
+{% endblock %}
+
+{% block srcipt %}
+{% endblock %}
+
+{% block content %}
+<div style="width: 40%; margin: 5em auto 2em auto;">
+    <div class="container card bg-light">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group card-title">
+                <legend class="border-bottom mb-3 ml-3 mt-2">Join Today</legend>    
+            </div>
+            <div class="card-body">
+            {{form|crispy}}
+            <small>Check if you are creating company account</small>
+            {{accountForm|crispy}}
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3 card-footer">
+            <small class="text-muted">
+                Already Have An Account? Login<a class="ml-1" href="{% url 'login' %}">here</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

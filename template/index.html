@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title%}
+  Job Portal
+{% endblock %}
+
+{% block content%}
+
+<!-- Search Section -->
+<div class="container-fluid" id="section">
+  <div class="home-bg">
+    <h2 class="tag-line">One million success stories<br>
+      Start yours today</h2>
+
+    <form class="form-inline my-2 my-lg-0" id="search-form" method="POST" action = "{% url 'index' %}">
+      {% csrf_token %}
+      <div class="what-where grid-container container-fluid"> 
+        <div><h3>What</h3>
+          <p>job title, keywords, or company</p>
+          <input class="form-control mr-sm-2"  id="input-size" type='text' name='jobtitle' placeholder="e.g: Software Developer">
+        </div>
+        <div>
+          <h3>Where</h3>
+          <p>city, state, or pin code</p>
+          <input class="form-control mr-sm-2"  id="input-size" type='text' name='place' placeholder="e.g: Delhi">
+        </div>
+        <div>
+          <br>
+          <br>
+          <br> 
+          <input type="submit" class="btn btn-light" id="btn-findJob" >
+        </div>  
+      </div>
+    </form>
+
+  </div>
+</div>
+ 
+<!-- How It Works Section -->
+<div class="container-fluid How_It_Works">
+  <h1>How It <span>Works?</span></h1>
+  <ul class="HowItWorks_list">
+    <li><a href="#"><img src="/static/images/account_icon.png" alt="Create Account Icon"></a><br><br>
+      <h3>Create An Account</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p></li>
+    <li><a href="#"><img src="/static/images/Job_icon.svg" alt="Search Job Icon"></a><br><br>
+      <h3>Search Desired Job</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p></li>
+    <li><a href="#"><img src="/static/images/Resume_icon.png" alt="Resume Icon"></a><br><br>
+      <h3>Upload Resume</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p></li>
+  </ul>
+</div>
+
+<!-- Top Employers Section -->
+<div class="container-fluid top-companies"> 
+  <h1>Top <span>Employers</span></h1>
+  <div class="company-img">
+  {% for company in topcompanies %}
+    <img src="{{ company.CompanyLogo.url }}" alt="Comapny image">
+  {% endfor %}
+  </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+ <p>&reg; All rights reserved.</p> 
+ <p>&copy; Job Search Portal. Built using Django Framework.</p> 
+</div>
+
+
+{% endblock %}

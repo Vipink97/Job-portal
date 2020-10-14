@@ -1,0 +1,54 @@
+.profile-body{
+    margin:5% auto;
+    margin-bottom: 2em;
+}
+  
+.userPic{
+    width: 8em;
+    height: 8em;
+}
+.userPic>img{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.userPic>img:hover{
+    transform: scale3d(1.05,1.05,1.05);
+}
+
+i{
+    color: blue;
+}
+
+.loctext{
+    margin-bottom: 0.6em;
+}
+
+.user-detail>ul>li{
+    margin-bottom: 0.6em;
+}
+
+.card-title{
+    color: blue;
+}
+
+.date-circle{
+    padding-top: 1em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+
+.date{
+    margin-left: 1em;
+    width: 80%;
+    height: 100%;
+}
+
